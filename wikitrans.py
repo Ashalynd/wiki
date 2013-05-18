@@ -24,11 +24,11 @@ urlpart = 'https://%s.wikipedia.org/wiki/'%slang
 
 f = urllib2.urlopen(urlpart + urllast)
 contents = f.read()
-mm =  re.findall('<a href=\"\/\/([a-z\-]+?)\.\wikipedia\.org\/wiki\/(.+?)" title=\"(.+?)"', contents)
+mm =  re.findall('<a href=\"\/\/([a-z\-]+?)\.\wikipedia\.org\/wiki\/(.+?)" title=\"(.+?)" lang=\"(.+?)" hreflang="(.+?)">(.+?)<\/a>', contents)
 
 for mmm in mm:
     if (tlang and (mmm[0]==tlang)) or (not tlang):
-        print mmm[0], mmm[2]
+        print "%s (%s)\t-\t%s\thttps://%s.wikipedia.org/wiki/%s "%(mmm[0], mmm[-1], mmm[2], mmm[0], mmm[1])
 
 
 
